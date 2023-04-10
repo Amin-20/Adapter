@@ -1,0 +1,27 @@
+﻿<Window x:Class="WpfApp1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1"
+        mc:Ignorable="d"
+        Title="MainWindow" 
+        Height="397" Width="535">
+    <Grid>
+        <Canvas>
+            <Label Canvas.Left="50" Canvas.Top="20" FontSize="15" Content="Name" ></Label>
+            <TextBox Canvas.Left="50" Canvas.Top="50" Width="300" FontSize="20" ></TextBox>
+            <Label Canvas.Left="50" Canvas.Top="90" FontSize="15" Content="Surname" ></Label>
+            <TextBox Canvas.Left="50" Canvas.Top="120" Width="300" FontSize="20" ></TextBox>
+            <Label Canvas.Left="50" Canvas.Top="160" FontSize="15" Content="Age" ></Label>
+            <TextBox Canvas.Left="50" Canvas.Top="190" Width="300" FontSize="20" ></TextBox>
+            <Label Canvas.Left="50" Canvas.Top="230" FontSize="15" Content="Speciality" ></Label>
+            <TextBox Canvas.Left="50" Canvas.Top="260" Width="300" FontSize="20" ></TextBox>
+            <RadioButton Canvas.Left="376" Canvas.Top="120" Name="JsonCheckBox" HorizontalAlignment="Left" VerticalAlignment="Top" ></RadioButton>
+            <Label Canvas.Left="423" Canvas.Top="109" FontSize="20" Content="Save Json" HorizontalAlignment="Left" VerticalAlignment="Top" ></Label>
+            <RadioButton Canvas.Left="376" Canvas.Top="191" Name="XmlCheckBox" HorizontalAlignment="Left" VerticalAlignment="Top" ></RadioButton>
+            <Label Canvas.Left="423" Canvas.Top="179" FontSize="20" Content="Save Xml" HorizontalAlignment="Left" VerticalAlignment="Top" ></Label>
+            <Button Canvas.Left="123" Canvas.Top="329" Width="318" Height="30" FontSize="15" Content="Save" HorizontalAlignment="Left" VerticalAlignment="Center" ></Button>
+        </Canvas>
+    </Grid>
+</Window>
