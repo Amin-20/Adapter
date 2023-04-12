@@ -14,12 +14,12 @@
             <Label Canvas.Left="50" Canvas.Top="90" FontSize="15" Content="Surname" ></Label>
             <TextBox Text="{Binding Surname, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Canvas.Left="50" Canvas.Top="120" Width="300" FontSize="20" ></TextBox>
             <Label Canvas.Left="50" Canvas.Top="160" FontSize="15" Content="Age" ></Label>
-            <TextBox Text="{Binding Surnam, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Canvas.Left="50" Canvas.Top="190" Width="300" FontSize="20" ></TextBox>
+            <TextBox Text="{Binding Age, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Canvas.Left="50" Canvas.Top="190" Width="300" FontSize="20" ></TextBox>
             <Label Canvas.Left="50" Canvas.Top="230" FontSize="15" Content="Speciality" ></Label>
-            <TextBox Text="{Binding Surnam, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Canvas.Left="50" Canvas.Top="260" Width="300" FontSize="20" ></TextBox>
-            <RadioButton Canvas.Left="376" Canvas.Top="120" Name="JsonCheckBox" HorizontalAlignment="Left" VerticalAlignment="Top" ></RadioButton>
+            <TextBox Text="{Binding Speciality, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Canvas.Left="50" Canvas.Top="260" Width="300" FontSize="20" ></TextBox>
+            <RadioButton IsChecked="{Binding JsonWriterChecked}" Canvas.Left="376" Canvas.Top="120" Name="JsonCheckBox" HorizontalAlignment="Left" VerticalAlignment="Top" ></RadioButton>
             <Label Canvas.Left="423" Canvas.Top="109" FontSize="20" Content="Save Json" HorizontalAlignment="Left" VerticalAlignment="Top" ></Label>
-            <RadioButton Canvas.Left="376" Canvas.Top="191" Name="XmlCheckBox" HorizontalAlignment="Left" VerticalAlignment="Top" ></RadioButton>
+            <RadioButton IsChecked="{Binding XMLWriterChecked}" Canvas.Left="376" Canvas.Top="191" Name="XmlCheckBox" HorizontalAlignment="Left" VerticalAlignment="Top" ></RadioButton>
             <Label Canvas.Left="423" Canvas.Top="179" FontSize="20" Content="Save Xml" HorizontalAlignment="Left" VerticalAlignment="Top" ></Label>
             <Button Command="{Binding SaveCommand}" Canvas.Left="123" Canvas.Top="329" Width="318" Height="30" FontSize="15" Content="Save" HorizontalAlignment="Left" VerticalAlignment="Center" ></Button>
         </Canvas>

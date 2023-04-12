@@ -27,36 +27,36 @@ namespace WpfApp1.Helpers
                 }
             }
         }
-        public static Human ReadHumans()
+        public static Human ReadHumans(string filename)
         {
             Human user = null;
             var serializer = new JsonSerializer();
-            using (var sr = new StreamReader("humans.json"))
+            using (var sr = new StreamReader($"{filename}.json"))
             {
                 using (var jr = new JsonTextReader(sr))
                 {
                     user = serializer.Deserialize<Human>(jr);
                 }
-            }-
+            }
             return user;
         }
-        public static void WriteHumansXml(List<Human> Users)
+        public static void WriteHumansXml(Human User)
         {
-            XmlSerializer serializer = new XmlSerializer(typeof(List<Human>));
-            using (TextWriter writer = new StreamWriter("humans.xml"))
+            XmlSerializer serializer = new XmlSerializer(typeof(Human));
+            using (TextWriter writer = new StreamWriter($"{User.Name}.xml"))
             {
-                serializer.Serialize(writer, Users);
+                serializer.Serialize(writer, User);
             }
         }
-        public static List<Human> ReadHumanXml()
+        public static Human ReadHumanXml(string filename)
         {
-            List<Human> users = null;
-            XmlSerializer serializer = new XmlSerializer(typeof(List<Human>));
-            using (TextReader reader = new StreamReader("humans.xml"))
+            Human user = null;
+            XmlSerializer serializer = new XmlSerializer(typeof(Human));
+            using (TextReader reader = new StreamReader("filename.xml"))
             {
-                users = (List<Human>)serializer.Deserialize(reader);
+                user = (Human)serializer.Deserialize(reader);
             }
-            return users;
+            return user;
         }
     }
 }

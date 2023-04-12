@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.TextFormatting;
 using System.Xml.Serialization;
@@ -19,7 +20,7 @@ namespace WpfApp1.ViewModels
         interface IAdapter
         {
             void Write(Human user);
-            //List<Human> Read();
+            Human Read();
         }
         class JsonAdapter : IAdapter
         {
@@ -30,17 +31,17 @@ namespace WpfApp1.ViewModels
                 _json = json;
             }
 
-            //public List<Human> Read()
-            //{
-            //    return _json.Read();
-            //}
+            public Human Read()
+            {
+                return _json.Read();
+            }
 
             public void Write(Human user)
             {
                 _json.Write(user);
             }
 
-     
+
         }
         class XmlAdapter : IAdapter
         {
@@ -50,10 +51,10 @@ namespace WpfApp1.ViewModels
                 _xml = xml;
             }
 
-            //public List<Human> Read()
-            //{
-            //    return _xml.Read();
-            //}
+            public Human Read()
+            {
+                return _xml.Read();
+            }
 
             public void Write(Human user)
             {
@@ -62,16 +63,16 @@ namespace WpfApp1.ViewModels
         }
         class Json
         {
-            public List<Human> Read()
+            public Human Read()
             {
 
-                List<Human> users = null;
+                Human users = null;
                 var serializer = new JsonSerializer();
                 using (var sr = new StreamReader("humans.json"))
                 {
                     using (var jr = new JsonTextReader(sr))
                     {
-                        users = serializer.Deserialize<List<Human>>(jr);
+                        users = serializer.Deserialize<Human>(jr);
                     }
                 }
                 return users;
@@ -84,18 +85,18 @@ namespace WpfApp1.ViewModels
         }
         class XML
         {
-            public List<Human> Read()
+            public Human Read()
             {
-                List<Human> users = null;
+                Human users = null;
                 XmlSerializer serializer = new XmlSerializer(typeof(List<Human>));
                 using (TextReader reader = new StreamReader("humans.xml"))
                 {
-                    users = (List<Human>)serializer.Deserialize(reader);
+                    users = (Human)serializer.Deserialize(reader);
                 }
                 return users;
             }
 
-            public void Write(List<Human> users)
+            public void Write(Human users)
             {
                 FileHelper.WriteHumansXml(users);
             }
@@ -107,14 +108,14 @@ namespace WpfApp1.ViewModels
             {
                 _adapter = adapter;
             }
-            public void Write(List<Human> users)
+            public void Write(Human users)
             {
                 _adapter.Write(users);
             }
-            //public List<Human> Read()
-            //{
-            //    return _adapter.Read();
-            //}
+            public Human Read()
+            {
+                return _adapter.Read();
+            }
         }
         class Application
         {
@@ -123,15 +124,15 @@ namespace WpfApp1.ViewModels
             {
                 _converter = new Converter(adapter);
             }
-            public void Write(List<Human> users)
+            public void Write(Human users)
             {
                 _converter.Write(users);
 
             }
-            //public List<Human> Read()
-            //{
-            //    return _converter.Read();
-            //}
+            public Human Read()
+            {
+                return _converter.Read();
+            }
         }
         public RelayCommand SaveCommand { get; set; }
         private string name;
@@ -149,14 +150,80 @@ namespace WpfApp1.ViewModels
             get { return surname; }
             set { surname = value; OnPropertyChanged(); }
         }
+        private int age;
+
+        public int Age
+        {
+            get { return age; }
+            set { age = value; OnPropertyChanged(); }
+        }
+        private string speciality;
+
+        public string Speciality
+        {
+            get { return speciality; }
+            set { speciality = value; OnPropertyChanged(); }
+        }
+
+
+
+
+
+        private bool jsonWriter;
+
+        public bool JsonWriterChecked
+        {
+            get { return jsonWriter; }
+            set { jsonWriter = value; OnPropertyChanged(); }
+        }
+
+        private bool xmlWriter;
+
+        public bool XMLWriterChecked
+        {
+            get { return xmlWriter; }
+            set { xmlWriter = value; OnPropertyChanged(); }
+        }
 
 
         public MainWindowViewModel()
         {
             SaveCommand = new RelayCommand(obj =>
             {
-                Name = String.Empty;
-                Surname = String.Empty;
+                if (JsonWriterChecked || XMLWriterChecked)
+                {
+                    IAdapter adapter;
+                    Human users = new Human();
+                    users.Name = Name;
+                    users.Surname = Surname;
+                    users.Age = Age;
+                    users.Speciality = Speciality;
+                    if (JsonWriterChecked)
+                    {
+                        Json json = new Json();
+                        adapter = new JsonAdapter(json);
+                        Application app = new Application(adapter);
+                        adapter.Write(users);
+                        MessageBox.Show("Succesfully");
+                    }
+                    else if (XMLWriterChecked)
+                    {
+                        XML xml = new XML();
+                        adapter = new XmlAdapter(xml);
+                        Application app = new Application(adapter);
+                        adapter.Write(users);
+                        MessageBox.Show("Succesfully");
+                    }
+                    else
+                    {
+                        MessageBox.Show("You have to choose operation type");
+                    }
+
+                    Name = String.Empty;
+                    Surname = String.Empty;
+                    Age = 0;
+                    Speciality = String.Empty;
+                }
             });
         }
 
