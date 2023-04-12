@@ -10,13 +10,13 @@
     <Grid>
         <Canvas>
             <Label Canvas.Left="50" Canvas.Top="20" FontSize="15" Content="Name" ></Label>
-            <TextBox Text="{Binding Name}" Canvas.Left="50" Canvas.Top="50" Width="300" FontSize="20" ></TextBox>
+            <TextBox Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Canvas.Left="50" Canvas.Top="50" Width="300" FontSize="20" ></TextBox>
             <Label Canvas.Left="50" Canvas.Top="90" FontSize="15" Content="Surname" ></Label>
-            <TextBox Text="{Binding Surname}" Canvas.Left="50" Canvas.Top="120" Width="300" FontSize="20" ></TextBox>
+            <TextBox Text="{Binding Surname, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Canvas.Left="50" Canvas.Top="120" Width="300" FontSize="20" ></TextBox>
             <Label Canvas.Left="50" Canvas.Top="160" FontSize="15" Content="Age" ></Label>
-            <TextBox Canvas.Left="50" Canvas.Top="190" Width="300" FontSize="20" ></TextBox>
+            <TextBox Text="{Binding Surnam, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Canvas.Left="50" Canvas.Top="190" Width="300" FontSize="20" ></TextBox>
             <Label Canvas.Left="50" Canvas.Top="230" FontSize="15" Content="Speciality" ></Label>
-            <TextBox Canvas.Left="50" Canvas.Top="260" Width="300" FontSize="20" ></TextBox>
+            <TextBox Text="{Binding Surnam, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Canvas.Left="50" Canvas.Top="260" Width="300" FontSize="20" ></TextBox>
             <RadioButton Canvas.Left="376" Canvas.Top="120" Name="JsonCheckBox" HorizontalAlignment="Left" VerticalAlignment="Top" ></RadioButton>
             <Label Canvas.Left="423" Canvas.Top="109" FontSize="20" Content="Save Json" HorizontalAlignment="Left" VerticalAlignment="Top" ></Label>
             <RadioButton Canvas.Left="376" Canvas.Top="191" Name="XmlCheckBox" HorizontalAlignment="Left" VerticalAlignment="Top" ></RadioButton>
