@@ -8,6 +8,12 @@
         Title="MainWindow" 
         Height="440" Width="573">
     <Grid>
+        <Grid.Background>
+            <LinearGradientBrush>
+                <GradientStop Color="Orange" Offset="0"></GradientStop>
+                <GradientStop Color="Black" Offset="1"></GradientStop>
+            </LinearGradientBrush>
+        </Grid.Background>
         <Canvas>
             <Label Canvas.Left="50" Canvas.Top="20" FontSize="15" Content="Name" ></Label>
             <TextBox Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Canvas.Left="50" Canvas.Top="50" Width="300" FontSize="20" ></TextBox>
